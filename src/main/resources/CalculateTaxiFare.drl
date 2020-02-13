@@ -1,0 +1,13 @@
+import com.cmr.ad.model.test.TaxiRide
+
+//Global (just like a global variable) is used to pass information into the engine.
+global com.cmr.ad.model.test.Fare rideFare;
+dialect  "mvel"
+
+rule "Calculate Taxi Fare - Scenario 1"
+    when
+           taxiRideInstance:TaxiRide(isNightSurcharge == false && distanceMile < 10);
+    then
+        rideFare.setNightSurcharge(0L);
+        rideFare.setRideFare(70L);
+end
